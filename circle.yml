@@ -1,0 +1,15 @@
+dependencies:
+  cache_directories:
+    - terraform
+  pre:
+    - bash ./circleci-install-terraform.sh
+
+test:
+  override:
+    - terraform/terraform plan
+
+deployment:
+  production:
+    branch: production
+    commands:
+      - terraform/terraform apply
